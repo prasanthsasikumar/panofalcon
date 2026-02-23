@@ -81,13 +81,7 @@ This updates your `.env.local` with the storage credentials.
 npm run dev
 ```
 
-### Step 7: Initialize Database
-
-Open http://localhost:3000/api/init-db in your browser.
-
-You should see: `{"success":true,"message":"Database initialized successfully"}`
-
-### Step 8: Test Upload
+### Step 7: Test Upload
 
 1. Go to http://localhost:3000
 2. Click "Upload"

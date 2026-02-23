@@ -149,10 +149,3 @@ export async function incrementViews(idOrSlug: string) {
     return { success: false, error };
   }
 }
-
-// Check if we should use Supabase database
-// If NEXT_PUBLIC_SUPABASE_URL is set and BLOB_READ_WRITE_TOKEN is set, use Supabase
-export const USE_SUPABASE_DB = !!(
-  process.env.NEXT_PUBLIC_SUPABASE_URL && 
-  process.env.BLOB_READ_WRITE_TOKEN
-);

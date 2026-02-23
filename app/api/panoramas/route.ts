@@ -28,7 +28,7 @@ export async function GET(request: Request) {
       const limitNum = limit ? parseInt(limit) : 50;
       return NextResponse.json(panoramas.slice(0, limitNum));
     } else {
-      // Use Vercel Postgres
+      // Use Supabase database
       const { getAllPanoramas, getPanorama } = await import('@/lib/db');
       
       if (id) {

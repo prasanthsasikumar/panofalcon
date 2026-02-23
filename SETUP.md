@@ -301,7 +301,7 @@ panofalcon/
 │   ├── supabase/          # Supabase client/server utilities
 │   ├── fancy-names.ts     # Fancy name generator
 │   ├── local-storage.ts   # Local development storage
-│   └── db.ts              # Vercel Postgres wrapper
+│   └── db.ts              # Supabase database utilities
 └── public/
     └── uploads/           # Local file storage (dev only)
 ```

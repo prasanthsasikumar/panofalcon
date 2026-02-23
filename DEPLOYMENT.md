@@ -74,13 +74,7 @@ After deployment, you need to add storage:
    - Click "Create"
    - ✅ Environment variables are automatically added!
 
-## Step 7: Initialize Database
-
-1. **Open your deployed site**: `https://your-project-name.vercel.app`
-2. **Visit the init endpoint**: `https://your-project-name.vercel.app/api/init-db`
-3. **You should see**: `{"success":true,"message":"Database initialized successfully"}`
-
-## Step 8: Test Your Site!
+## Step 7: Test Your Site!
 
 1. **Visit your site**: `https://your-project-name.vercel.app`
 2. **Click "Upload"**

@@ -66,12 +66,23 @@ export default function UserMenu() {
             src={user.user_metadata.avatar_url}
             alt={user.user_metadata?.full_name || 'User'}
             className="w-8 h-8 rounded-full"
+            onError={(e) => {
+              // If image fails to load, replace with generic icon
+              e.currentTarget.style.display = 'none';
+              if (e.currentTarget.nextElementSibling) {
+                (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'flex';
+              }
+            }}
           />
-        ) : (
-          <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-400 rounded-full flex items-center justify-center text-white font-semibold">
-            {user.email?.[0].toUpperCase()}
-          </div>
-        )}
+        ) : null}
+        <div 
+          className="w-8 h-8 bg-gradient-to-br from-falcon-600 to-falcon-400 rounded-full flex items-center justify-center text-white"
+          style={{ display: user.user_metadata?.avatar_url ? 'none' : 'flex' }}
+        >
+          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+          </svg>
+        </div>
         <span className="text-sm font-medium text-gray-700">
           {user.user_metadata?.full_name || user.email}
         </span>

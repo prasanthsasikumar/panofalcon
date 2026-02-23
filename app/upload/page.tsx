@@ -1,12 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import UserMenu from '@/components/UserMenu';
 
 export default function UploadPage() {
   const router = useRouter();
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -48,6 +49,10 @@ export default function UploadPage() {
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
+  };
+
+  const handleDropZoneClick = () => {
+    fileInputRef.current?.click();
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -124,6 +129,7 @@ export default function UploadPage() {
               <div
                 onDrop={handleDrop}
                 onDragOver={handleDragOver}
+                onClick={!preview ? handleDropZoneClick : undefined}
                 className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center hover:border-falcon-500 transition-colors cursor-pointer bg-white"
               >
                 {preview ? (
@@ -170,6 +176,7 @@ export default function UploadPage() {
                       PNG, JPG, JPEG up to 50MB
                     </p>
                     <input
+                      ref={fileInputRef}
                       id="file-upload"
                       type="file"
                       accept="image/*"
