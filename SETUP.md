@@ -91,6 +91,11 @@ CREATE POLICY "Users can insert their own panoramas"
   ON panoramas FOR INSERT
   WITH CHECK (auth.uid() = user_id);
 
+-- Policy: Allow anonymous uploads (when user_id is NULL)
+CREATE POLICY "Anonymous users can insert panoramas"
+  ON panoramas FOR INSERT
+  WITH CHECK (user_id IS NULL);
+
 -- Policy: Users can update their own panoramas
 CREATE POLICY "Users can update their own panoramas"
   ON panoramas FOR UPDATE
@@ -110,10 +115,10 @@ These security rules control who can read, insert, update, or delete data:
 
 - **✅ Anyone can view** all panoramas (perfect for sharing!)
 - **✅ Logged-in users can upload** panoramas linked to their account
+- **✅ Anonymous users can upload** panoramas (user_id will be NULL)
 - **✅ Users can only edit/delete** their own panoramas
-- **✅ Anonymous uploads** are allowed (user_id will be NULL)
 
-This means your panoramas are publicly viewable but only you can manage them!
+This means your panoramas are publicly viewable and anyone can upload, but only the owner can manage them!
 
 ## Step 4: Set Up Google OAuth
 
