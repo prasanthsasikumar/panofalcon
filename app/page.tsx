@@ -120,7 +120,7 @@ export default function Home() {
             <span className="text-xl font-bold">PanoFalcon</span>
           </div>
           <p className="text-gray-400">
-            Built with Next.js, Vercel, and ❤️
+            Built with Next.js, Vercel, and ❤️ by the PanoFalcon Team. <br />
           </p>
         </div>
       </footer>
