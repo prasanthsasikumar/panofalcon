@@ -78,6 +78,7 @@ export async function POST(request: Request) {
       // Save to local JSON database
       const result = await savePanoramaLocally({
         id,
+        slug,
         title,
         description,
         image_url: imageUrl,

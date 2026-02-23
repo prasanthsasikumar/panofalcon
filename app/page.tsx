@@ -3,7 +3,7 @@ import UserMenu from '@/components/UserMenu';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-falcon-50 via-white to-falcon-100">
+    <div className="min-h-screen bg-gradient-to-br from-falcon-50 via-white to-falcon-100 flex flex-col">
       {/* Navigation */}
       <nav className="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -26,7 +26,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <main className="container mx-auto px-4 py-20">
+      <main className="container mx-auto px-4 py-20 flex-grow">
         <div className="text-center max-w-4xl mx-auto">
           <div className="mb-8 inline-flex items-center justify-center w-24 h-24 bg-falcon-100 rounded-full">
             <svg className="w-12 h-12 text-falcon-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -111,7 +111,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="mt-32 bg-gray-900 text-white py-12">
+      <footer className="mt-auto bg-gray-900 text-white py-12">
         <div className="container mx-auto px-4 text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -120,7 +120,7 @@ export default function Home() {
             <span className="text-xl font-bold">PanoFalcon</span>
           </div>
           <p className="text-gray-400">
-            Built with Next.js, Vercel, and ❤️ by the PanoFalcon Team. <br />
+            Built with Next.js, Vercel, and ❤️ by the PanoFalcon Team.
           </p>
         </div>
       </footer>

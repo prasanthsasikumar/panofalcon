@@ -89,17 +89,13 @@ export async function saveFileLocally(file: File, slug: string, userId?: string)
 }
 
 export async function savePanoramaLocally(
-  panorama: Omit<LocalPanorama, 'created_at' | 'views' | 'slug'>,
+  panorama: Omit<LocalPanorama, 'created_at' | 'views'>,
   userId?: string
 ) {
   const db = await readDB();
   
-  // Generate unique fancy name
-  const slug = await generateUniqueFancyName(slugExists);
-  
   const newPanorama: LocalPanorama = {
     ...panorama,
-    slug,
     user_id: userId,
     created_at: new Date().toISOString(),
     views: 0,
@@ -108,7 +104,7 @@ export async function savePanoramaLocally(
   db.push(newPanorama);
   await writeDB(db);
   
-  return { success: true, data: newPanorama, slug };
+  return { success: true, data: newPanorama, slug: panorama.slug };
 }
 
 export async function getPanoramaLocally(idOrSlug: string): Promise<LocalPanorama | null> {
