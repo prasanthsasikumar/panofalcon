@@ -28,7 +28,7 @@ export default async function ViewPage({ params }: { params: { id: string } }) {
     notFound();
   }
 
-  const shareUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/view/${params.id}`;
+  const shareUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://panofalcon.flowsxr.com'}/view/${params.id}`;
 
   return (
     <div className="h-screen flex flex-col bg-gray-900">
