@@ -11,9 +11,18 @@ import { createClient } from '@/lib/supabase/server';
 // Conditionally import Vercel services
 async function uploadToVercel(file: File, slug: string) {
   const { put } = await import('@vercel/blob');
-  return await put(`panoramas/${slug}/${file.name}`, file, {
-    access: 'public',
-  });
+  // Try public access first, fall back to private if needed
+  try {
+    return await put(`panoramas/${slug}/${file.name}`, file, {
+      access: 'public',
+    });
+  } catch (error: any) {
+    // If public access fails, use default (private) access
+    if (error.message?.includes('private store')) {
+      return await put(`panoramas/${slug}/${file.name}`, file);
+    }
+    throw error;
+  }
 }
 
 async function saveToDatabase(data: any) {
