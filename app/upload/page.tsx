@@ -97,15 +97,15 @@ export default function UploadPage() {
     <div className="min-h-screen bg-gradient-to-br from-falcon-50 via-white to-falcon-100">
       {/* Navigation */}
       <nav className="bg-white/80 backdrop-blur-md border-b border-gray-200">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2">
-            <svg className="w-8 h-8 text-falcon-600" fill="currentColor" viewBox="0 0 24 24">
+        <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4 flex items-center justify-between gap-2">
+          <Link href="/" className="flex items-center space-x-1 sm:space-x-2 flex-shrink-0">
+            <svg className="w-6 h-6 sm:w-8 sm:h-8 text-falcon-600" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
             </svg>
-            <span className="text-2xl font-bold text-gray-900">PanoFalcon</span>
+            <span className="text-lg sm:text-2xl font-bold text-gray-900">PanoFalcon</span>
           </Link>
-          <div className="flex items-center space-x-4">
-            <Link href="/gallery" className="text-gray-600 hover:text-falcon-600 transition">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <Link href="/gallery" className="text-sm sm:text-base text-gray-600 hover:text-falcon-600 transition">
               Gallery
             </Link>
             <UserMenu />
@@ -113,14 +113,14 @@ export default function UploadPage() {
         </div>
       </nav>
 
-      <main className="container mx-auto px-4 py-12">
+      <main className="container mx-auto px-3 sm:px-4 py-6 sm:py-12">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Upload Panorama</h1>
-          <p className="text-gray-600 mb-8">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2">Upload Panorama</h1>
+          <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8">
             Share your 360° experience with the world
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             {/* File Upload */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -130,23 +130,23 @@ export default function UploadPage() {
                 onDrop={handleDrop}
                 onDragOver={handleDragOver}
                 onClick={!preview ? handleDropZoneClick : undefined}
-                className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center hover:border-falcon-500 transition-colors cursor-pointer bg-white"
+                className="border-2 border-dashed border-gray-300 rounded-lg p-6 sm:p-12 text-center hover:border-falcon-500 transition-colors cursor-pointer bg-white"
               >
                 {preview ? (
-                  <div className="space-y-4">
+                  <div className="space-y-3 sm:space-y-4">
                     <img
                       src={preview}
                       alt="Preview"
-                      className="max-h-64 mx-auto rounded-lg"
+                      className="max-h-48 sm:max-h-64 mx-auto rounded-lg"
                     />
-                    <p className="text-sm text-gray-600">{file?.name}</p>
+                    <p className="text-xs sm:text-sm text-gray-600 break-all px-2">{file?.name}</p>
                     <button
                       type="button"
                       onClick={() => {
                         setFile(null);
                         setPreview(null);
                       }}
-                      className="text-falcon-600 hover:text-falcon-700 text-sm"
+                      className="text-sm text-falcon-600 hover:text-falcon-700"
                     >
                       Change image
                     </button>
@@ -154,7 +154,7 @@ export default function UploadPage() {
                 ) : (
                   <div>
                     <svg
-                      className="mx-auto h-12 w-12 text-gray-400"
+                      className="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-gray-400"
                       stroke="currentColor"
                       fill="none"
                       viewBox="0 0 48 48"
@@ -166,7 +166,7 @@ export default function UploadPage() {
                         strokeLinejoin="round"
                       />
                     </svg>
-                    <p className="mt-4 text-sm text-gray-600">
+                    <p className="mt-3 sm:mt-4 text-sm text-gray-600">
                       <label htmlFor="file-upload" className="cursor-pointer text-falcon-600 hover:text-falcon-700 font-medium">
                         Upload a file
                       </label>
@@ -199,7 +199,7 @@ export default function UploadPage() {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Give your panorama a title"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-falcon-500 focus:border-transparent"
+                className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-falcon-500 focus:border-transparent"
                 required
               />
             </div>
@@ -215,23 +215,23 @@ export default function UploadPage() {
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Tell us about this panorama..."
                 rows={4}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-falcon-500 focus:border-transparent"
+                className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-falcon-500 focus:border-transparent"
               />
             </div>
 
             {/* Error Message */}
             {error && (
-              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+              <div className="bg-red-50 border border-red-200 text-red-700 px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-sm">
                 {error}
               </div>
             )}
 
             {/* Submit Button */}
-            <div className="flex items-center space-x-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
               <button
                 type="submit"
                 disabled={!file || !title || uploading}
-                className="btn-primary text-lg px-8 py-3 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+                className="btn-primary text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 {uploading ? (
                   <>
@@ -245,7 +245,7 @@ export default function UploadPage() {
                   <span>Upload & Share</span>
                 )}
               </button>
-              <Link href="/" className="btn-secondary text-lg px-8 py-3">
+              <Link href="/" className="btn-secondary text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3 text-center">
                 Cancel
               </Link>
             </div>

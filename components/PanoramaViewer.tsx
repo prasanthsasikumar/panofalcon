@@ -31,6 +31,9 @@ export default function PanoramaViewer({ imageUrl, autoRotate = true }: Panorama
         
         script.onload = () => {
           if (viewerRef.current && (window as any).pannellum) {
+            // Detect if mobile
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
             (window as any).pannellum.viewer(viewerRef.current, {
               type: 'equirectangular',
               panorama: imageUrl,
@@ -40,10 +43,12 @@ export default function PanoramaViewer({ imageUrl, autoRotate = true }: Panorama
               showControls: true,
               showFullscreenCtrl: true,
               showZoomCtrl: true,
-              mouseZoom: true,
+              mouseZoom: !isMobile, // Disable mouse zoom on mobile
+              touchPanSpeedCoeffFactor: 1, // Better touch sensitivity
+              friction: 0.15, // Smoother momentum on mobile
               draggable: true,
               disableKeyboardCtrl: false,
-              hfov: 100,
+              hfov: isMobile ? 90 : 100, // Better initial FOV for mobile
               pitch: 0,
               yaw: 0,
               minHfov: 50,
@@ -107,8 +112,9 @@ export default function PanoramaViewer({ imageUrl, autoRotate = true }: Panorama
       <div ref={viewerRef} className="w-full h-full" />
       
       {!isLoading && !error && (
-        <div className="absolute bottom-4 right-4 bg-black/60 text-white text-sm px-4 py-2 rounded-lg backdrop-blur-sm">
-          🖱️ Drag to look around • Scroll to zoom
+        <div className="absolute bottom-4 right-4 bg-black/60 text-white text-xs sm:text-sm px-3 py-2 sm:px-4 rounded-lg backdrop-blur-sm max-w-[90%] sm:max-w-none">
+          <span className="hidden sm:inline">🖱️ Drag to look around • Scroll to zoom</span>
+          <span className="sm:hidden">👆 Swipe to explore • Pinch to zoom</span>
         </div>
       )}
     </div>
