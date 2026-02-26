@@ -29,7 +29,7 @@ export default function ShareButton({ shareUrl }: ShareButtonProps) {
   return (
     <button
       onClick={handleShare}
-      className="bg-falcon-600 hover:bg-falcon-700 text-white px-4 py-2 rounded-lg transition-colors flex items-center space-x-2"
+      className="bg-accent-500 hover:bg-accent-600 text-white px-4 py-2 rounded-full transition-all flex items-center space-x-2 shadow-lg shadow-accent-500/25"
     >
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         {copied ? (

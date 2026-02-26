@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { FcGoogle } from 'react-icons/fc';
+import Navbar from '@/components/Navbar';
 
 export default function AuthPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -18,7 +19,6 @@ export default function AuthPage() {
       const data = await response.json();
       
       if (data.url) {
-        // Redirect to Google OAuth
         window.location.href = data.url;
       }
     } catch (error) {
@@ -30,30 +30,24 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
-      {/* Header */}
-      <header className="border-b bg-white/80 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-4">
-          <Link 
-            href="/"
-            className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent"
-          >
-            🦅 PanoFalcon
-          </Link>
-        </div>
-      </header>
+    <div className="min-h-screen bg-dark-900">
+      <Navbar />
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-md mx-auto">
+      <div className="pt-32 sm:pt-40 pb-16 sm:pb-24">
+        <div className="max-w-md mx-auto px-4 sm:px-6">
           {/* Card */}
-          <div className="bg-white rounded-2xl shadow-xl p-8">
+          <div className="glass-card p-8 sm:p-10">
             <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-falcon-400 to-falcon-600 rounded-2xl flex items-center justify-center">
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+              </div>
+              <h1 className="text-3xl font-bold text-white mb-2">
                 Welcome to PanoFalcon
               </h1>
-              <p className="text-gray-600">
-                Sign in to upload and share your 360° panoramas
+              <p className="text-gray-400">
+                Sign in to upload and manage your 360° panoramas
               </p>
             </div>
 
@@ -61,7 +55,7 @@ export default function AuthPage() {
             <button
               onClick={handleGoogleSignIn}
               disabled={isLoading}
-              className="w-full flex items-center justify-center gap-3 bg-white hover:bg-gray-50 text-gray-800 font-semibold py-3 px-4 border border-gray-300 rounded-lg shadow-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center gap-3 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-3.5 px-4 rounded-xl shadow-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <FcGoogle className="text-2xl" />
               <span>
@@ -70,14 +64,14 @@ export default function AuthPage() {
             </button>
 
             {/* Info */}
-            <div className="mt-6 text-center text-sm text-gray-600">
+            <div className="mt-6 text-center text-sm text-gray-500">
               <p>
                 By signing in, you agree to our{' '}
-                <Link href="/terms" className="text-blue-600 hover:text-blue-700">
+                <Link href="#" className="text-falcon-400 hover:text-falcon-300">
                   Terms of Service
                 </Link>{' '}
                 and{' '}
-                <Link href="/privacy" className="text-blue-600 hover:text-blue-700">
+                <Link href="#" className="text-falcon-400 hover:text-falcon-300">
                   Privacy Policy
                 </Link>
               </p>
@@ -86,26 +80,26 @@ export default function AuthPage() {
 
           {/* Features */}
           <div className="mt-8 grid grid-cols-1 gap-4 text-center">
-            <div className="bg-white/60 backdrop-blur-sm rounded-lg p-4">
+            <div className="glass-card p-5">
               <div className="text-2xl mb-2">🚀</div>
-              <h3 className="font-semibold text-gray-900 mb-1">Fast Uploads</h3>
-              <p className="text-sm text-gray-600">
+              <h3 className="font-semibold text-white mb-1">Fast Uploads</h3>
+              <p className="text-sm text-gray-400">
                 Upload your panoramas in seconds
               </p>
             </div>
             
-            <div className="bg-white/60 backdrop-blur-sm rounded-lg p-4">
+            <div className="glass-card p-5">
               <div className="text-2xl mb-2">🔗</div>
-              <h3 className="font-semibold text-gray-900 mb-1">Shareable Links</h3>
-              <p className="text-sm text-gray-600">
+              <h3 className="font-semibold text-white mb-1">Shareable Links</h3>
+              <p className="text-sm text-gray-400">
                 Get memorable URLs like flying-falcon-42
               </p>
             </div>
             
-            <div className="bg-white/60 backdrop-blur-sm rounded-lg p-4">
+            <div className="glass-card p-5">
               <div className="text-2xl mb-2">📊</div>
-              <h3 className="font-semibold text-gray-900 mb-1">Track Views</h3>
-              <p className="text-sm text-gray-600">
+              <h3 className="font-semibold text-white mb-1">Track Views</h3>
+              <p className="text-sm text-gray-400">
                 See how many people viewed your panoramas
               </p>
             </div>

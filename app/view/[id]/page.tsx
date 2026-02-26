@@ -33,13 +33,17 @@ export default async function ViewPage({ params }: { params: { id: string } }) {
   return (
     <div className="h-[100dvh] flex flex-col bg-gray-900">
       {/* Header */}
-      <header className="bg-black/80 backdrop-blur-md border-b border-gray-800 z-10">
-        <div className="container mx-auto px-3 sm:px-4 py-2 sm:py-3 flex items-center justify-between gap-2">
-          <Link href="/" className="flex items-center space-x-1 sm:space-x-2 flex-shrink-0">
-            <svg className="w-5 h-5 sm:w-6 sm:h-6 text-falcon-400" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-            </svg>
-            <span className="text-lg sm:text-xl font-bold text-white">PanoFalcon</span>
+      <header className="bg-dark-950/90 backdrop-blur-xl border-b border-white/5 z-10">
+        <div className="max-w-full mx-auto px-3 sm:px-6 py-2 sm:py-3 flex items-center justify-between gap-2">
+          <Link href="/" className="flex items-center space-x-2 flex-shrink-0">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-falcon-400 to-falcon-600 rounded-lg flex items-center justify-center">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <span className="text-lg sm:text-xl font-bold text-white">
+              Pano<span className="text-falcon-400">Falcon</span>
+            </span>
           </Link>
 
           <div className="flex items-center gap-2 sm:gap-4 flex-1 min-w-0">
@@ -55,7 +59,7 @@ export default async function ViewPage({ params }: { params: { id: string } }) {
 
               <Link
                 href="/upload"
-                className="bg-gray-700 hover:bg-gray-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg transition-colors text-sm sm:text-base"
+                className="bg-white/10 hover:bg-white/20 border border-white/10 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full transition-colors text-sm sm:text-base"
               >
                 Upload
               </Link>
@@ -70,7 +74,7 @@ export default async function ViewPage({ params }: { params: { id: string } }) {
       </div>
 
       {/* Mobile info */}
-      <div className="md:hidden bg-black/80 backdrop-blur-md border-t border-gray-800 px-3 sm:px-4 py-2 sm:py-3">
+      <div className="md:hidden bg-dark-950/90 backdrop-blur-xl border-t border-white/5 px-3 sm:px-4 py-2 sm:py-3">
         <h2 className="text-white font-semibold text-sm sm:text-base">{panorama.title}</h2>
         {panorama.description && (
           <p className="text-gray-400 text-xs sm:text-sm mt-1 line-clamp-2">{panorama.description}</p>

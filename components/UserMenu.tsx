@@ -40,7 +40,7 @@ export default function UserMenu() {
 
   if (loading) {
     return (
-      <div className="w-8 h-8 bg-gray-200 rounded-full animate-pulse" />
+      <div className="w-8 h-8 bg-white/10 rounded-full animate-pulse" />
     );
   }
 
@@ -48,7 +48,7 @@ export default function UserMenu() {
     return (
       <Link
         href="/auth"
-        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+        className="px-4 py-2 text-sm text-gray-300 hover:text-white border border-white/10 rounded-full hover:bg-white/10 transition-all font-medium"
       >
         Sign In
       </Link>
@@ -59,7 +59,7 @@ export default function UserMenu() {
     <div className="relative">
       <button
         onClick={() => setShowDropdown(!showDropdown)}
-        className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+        className="flex items-center gap-2 px-3 py-2 rounded-full hover:bg-white/10 transition-colors"
       >
         {user.user_metadata?.avatar_url ? (
           <img
@@ -83,7 +83,7 @@ export default function UserMenu() {
             <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
           </svg>
         </div>
-        <span className="text-sm font-medium text-gray-700">
+        <span className="text-sm font-medium text-gray-300 hidden sm:inline">
           {user.user_metadata?.full_name || user.email}
         </span>
       </button>
@@ -97,19 +97,19 @@ export default function UserMenu() {
           />
           
           {/* Dropdown menu */}
-          <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-20">
-            <div className="px-4 py-2 border-b border-gray-200">
-              <p className="text-sm font-medium text-gray-900">
+          <div className="absolute right-0 mt-2 w-56 bg-dark-800 rounded-xl shadow-lg border border-white/10 py-1 z-20">
+            <div className="px-4 py-3 border-b border-white/10">
+              <p className="text-sm font-medium text-white">
                 {user.user_metadata?.full_name || 'User'}
               </p>
-              <p className="text-xs text-gray-500 truncate">
+              <p className="text-xs text-gray-400 truncate">
                 {user.email}
               </p>
             </div>
             
             <Link
               href="/gallery"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              className="block px-4 py-2.5 text-sm text-gray-300 hover:bg-white/10 hover:text-white"
               onClick={() => setShowDropdown(false)}
             >
               My Panoramas
@@ -120,7 +120,7 @@ export default function UserMenu() {
                 setShowDropdown(false);
                 handleSignOut();
               }}
-              className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+              className="block w-full text-left px-4 py-2.5 text-sm text-red-400 hover:bg-white/10"
             >
               Sign Out
             </button>

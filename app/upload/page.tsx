@@ -3,7 +3,7 @@
 import { useState, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import UserMenu from '@/components/UserMenu';
+import Navbar from '@/components/Navbar';
 
 export default function UploadPage() {
   const router = useRouter();
@@ -80,7 +80,6 @@ export default function UploadPage() {
       const data = await response.json();
 
       if (response.ok) {
-        // Redirect to view page
         router.push(data.viewUrl);
       } else {
         setError(data.error || 'Upload failed');
@@ -94,85 +93,65 @@ export default function UploadPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-falcon-50 via-white to-falcon-100">
-      {/* Navigation */}
-      <nav className="bg-white/80 backdrop-blur-md border-b border-gray-200">
-        <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4 flex items-center justify-between gap-2">
-          <Link href="/" className="flex items-center space-x-1 sm:space-x-2 flex-shrink-0">
-            <svg className="w-6 h-6 sm:w-8 sm:h-8 text-falcon-600" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-            </svg>
-            <span className="text-lg sm:text-2xl font-bold text-gray-900">PanoFalcon</span>
-          </Link>
-          <div className="flex items-center gap-2 sm:gap-4">
-            <Link href="/gallery" className="text-sm sm:text-base text-gray-600 hover:text-falcon-600 transition">
-              Gallery
-            </Link>
-            <UserMenu />
+    <div className="min-h-screen bg-dark-900">
+      <Navbar />
+
+      <main className="pt-28 sm:pt-32 pb-16 sm:pb-24">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 sm:mb-10">
+            <h1 className="text-3xl sm:text-4xl font-bold text-white mb-3">
+              Share your <span className="gradient-text">360° photo</span>
+            </h1>
+            <p className="text-gray-400 text-lg">
+              Upload your panoramic image and share it with the world in seconds.
+            </p>
           </div>
-        </div>
-      </nav>
 
-      <main className="container mx-auto px-3 sm:px-4 py-6 sm:py-12">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2">Upload Panorama</h1>
-          <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8">
-            Share your 360° experience with the world
-          </p>
-
-          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             {/* File Upload */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-300 mb-3">
                 360° Image *
               </label>
               <div
                 onDrop={handleDrop}
                 onDragOver={handleDragOver}
                 onClick={!preview ? handleDropZoneClick : undefined}
-                className="border-2 border-dashed border-gray-300 rounded-lg p-6 sm:p-12 text-center hover:border-falcon-500 transition-colors cursor-pointer bg-white"
+                className="glass-card border-dashed border-2 border-white/10 p-8 sm:p-12 text-center hover:border-falcon-500/50 transition-all cursor-pointer"
               >
                 {preview ? (
-                  <div className="space-y-3 sm:space-y-4">
+                  <div className="space-y-4">
                     <img
                       src={preview}
                       alt="Preview"
-                      className="max-h-48 sm:max-h-64 mx-auto rounded-lg"
+                      className="max-h-48 sm:max-h-64 mx-auto rounded-xl"
                     />
-                    <p className="text-xs sm:text-sm text-gray-600 break-all px-2">{file?.name}</p>
+                    <p className="text-sm text-gray-400 break-all px-2">{file?.name}</p>
                     <button
                       type="button"
                       onClick={() => {
                         setFile(null);
                         setPreview(null);
                       }}
-                      className="text-sm text-falcon-600 hover:text-falcon-700"
+                      className="text-sm text-falcon-400 hover:text-falcon-300 font-medium"
                     >
                       Change image
                     </button>
                   </div>
                 ) : (
                   <div>
-                    <svg
-                      className="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-gray-400"
-                      stroke="currentColor"
-                      fill="none"
-                      viewBox="0 0 48 48"
-                    >
-                      <path
-                        d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                        strokeWidth={2}
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    <p className="mt-3 sm:mt-4 text-sm text-gray-600">
-                      <label htmlFor="file-upload" className="cursor-pointer text-falcon-600 hover:text-falcon-700 font-medium">
+                    <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-falcon-400/20 to-falcon-600/20 rounded-2xl flex items-center justify-center">
+                      <svg className="w-8 h-8 text-falcon-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                      </svg>
+                    </div>
+                    <p className="text-gray-300 mb-2">
+                      <label htmlFor="file-upload" className="cursor-pointer text-falcon-400 hover:text-falcon-300 font-medium">
                         Upload a file
                       </label>
                       {' '}or drag and drop
                     </p>
-                    <p className="text-xs text-gray-500 mt-2">
+                    <p className="text-xs text-gray-500">
                       PNG, JPG, JPEG up to 50MB
                     </p>
                     <input
@@ -190,7 +169,7 @@ export default function UploadPage() {
 
             {/* Title */}
             <div>
-              <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="title" className="block text-sm font-medium text-gray-300 mb-2">
                 Title *
               </label>
               <input
@@ -199,14 +178,14 @@ export default function UploadPage() {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Give your panorama a title"
-                className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-falcon-500 focus:border-transparent"
+                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:ring-2 focus:ring-falcon-500 focus:border-transparent transition-all"
                 required
               />
             </div>
 
             {/* Description */}
             <div>
-              <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="description" className="block text-sm font-medium text-gray-300 mb-2">
                 Description (optional)
               </label>
               <textarea
@@ -215,23 +194,23 @@ export default function UploadPage() {
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Tell us about this panorama..."
                 rows={4}
-                className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-falcon-500 focus:border-transparent"
+                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:ring-2 focus:ring-falcon-500 focus:border-transparent transition-all"
               />
             </div>
 
             {/* Error Message */}
             {error && (
-              <div className="bg-red-50 border border-red-200 text-red-700 px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-sm">
+              <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-xl text-sm">
                 {error}
               </div>
             )}
 
             {/* Submit Button */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
               <button
                 type="submit"
                 disabled={!file || !title || uploading}
-                className="btn-primary text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="btn-primary text-lg px-8 py-3 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 {uploading ? (
                   <>
@@ -245,7 +224,7 @@ export default function UploadPage() {
                   <span>Upload & Share</span>
                 )}
               </button>
-              <Link href="/" className="btn-secondary text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3 text-center">
+              <Link href="/" className="btn-secondary text-lg px-8 py-3 text-center">
                 Cancel
               </Link>
             </div>
